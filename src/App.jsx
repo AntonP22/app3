@@ -103,7 +103,7 @@ export default function NutritionApp() {
   };
 
   const openRecipeModal = (dishName) => {
-    console.log("Opening recipe modal for:", dishName);
+    console.log("Modal click triggered for:", dishName); // Проверка, что функция сработала
     const normalized = dishName?.toLowerCase().trim();
     const linkedName = recipeMap[normalized];
 
@@ -116,16 +116,23 @@ export default function NutritionApp() {
       found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
     }
 
-    console.log("Found recipe:", found);
+    console.log("Found recipe:", found); // Проверка, что рецепт найден
+
     setSelectedDish(dishName);
     setSelectedRecipe(found || null);
-    setIsModalOpen(true);
+
+    if (found) {
+      setIsModalOpen(true);  // Открытие модального окна, если рецепт найден
+    } else {
+      console.log("Recipe not found for:", dishName); // Лог для отслеживания отсутствующих рецептов
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedDish(null);
     setSelectedRecipe(null);
+    console.log("Modal closed"); // Лог при закрытии модального окна
   };
 
   const tabs = [
