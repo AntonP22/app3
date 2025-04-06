@@ -102,29 +102,30 @@ export default function NutritionApp() {
     reader.readAsArrayBuffer(file);
   };
 
-  const openRecipeModal = (dishName) => {
-    console.log("Modal click triggered for:", dishName); // Проверка, что функция сработала
-    const normalized = dishName?.toLowerCase().trim();
-    const linkedName = recipeMap[normalized];
+ const openRecipeModal = (dishName) => {
+  console.log("Modal click triggered for:", dishName);
+  const normalized = dishName?.toLowerCase().trim();
+  const linkedName = recipeMap[normalized];
 
-    let found = null;
-    if (linkedName) {
-      found = recipesData.find(r => r['Блюдо']?.toLowerCase().trim() === linkedName);
-    }
+  let found = null;
+  if (linkedName) {
+    found = recipesData.find(r => r['Блюдо']?.toLowerCase().trim() === linkedName);
+  }
 
-    if (!found) {
-      found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
-    }
+  if (!found) {
+    found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
+  }
 
-    if (found) {
-      console.log("Found recipe:", found);
-    if (!found) console.warn("Рецепт не найден, но модал откроется для диагностики"); // Проверка, что рецепт найден
-    } else {
-      console.log("Recipe not found for:", dishName); // Лог для отслеживания отсутствующих рецептов
-    }
+  if (found) {
+    console.log("✅ Found recipe:", found);
+  } else {
+    console.warn("⚠️ Рецепт не найден для:", dishName);
+  }
 
-    setSelectedDish(dishName);
-    setSelectedRecipe(found || null);
+  setSelectedDish(dishName);
+  setSelectedRecipe(found || null);
+  setIsModalOpen(true);
+};
 
     setIsModalOpen(true);  // Открытие модального окна, если рецепт найден
     } else {
