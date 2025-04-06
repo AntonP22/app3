@@ -117,7 +117,8 @@ export default function NutritionApp() {
     }
 
     if (found) {
-      console.log("Found recipe:", found); // Проверка, что рецепт найден
+      console.log("Found recipe:", found);
+    if (!found) console.warn("Рецепт не найден, но модал откроется для диагностики"); // Проверка, что рецепт найден
     } else {
       console.log("Recipe not found for:", dishName); // Лог для отслеживания отсутствующих рецептов
     }
@@ -125,8 +126,7 @@ export default function NutritionApp() {
     setSelectedDish(dishName);
     setSelectedRecipe(found || null);
 
-    if (found) {
-      setIsModalOpen(true);  // Открытие модального окна, если рецепт найден
+    setIsModalOpen(true);  // Открытие модального окна, если рецепт найден
     } else {
       console.log("No recipe linked to this dish.");
     }
