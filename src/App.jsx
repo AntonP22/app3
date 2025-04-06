@@ -116,7 +116,11 @@ export default function NutritionApp() {
       found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
     }
 
-    console.log("Found recipe:", found); // Проверка, что рецепт найден
+    if (found) {
+      console.log("Found recipe:", found); // Проверка, что рецепт найден
+    } else {
+      console.log("Recipe not found for:", dishName); // Лог для отслеживания отсутствующих рецептов
+    }
 
     setSelectedDish(dishName);
     setSelectedRecipe(found || null);
@@ -124,7 +128,7 @@ export default function NutritionApp() {
     if (found) {
       setIsModalOpen(true);  // Открытие модального окна, если рецепт найден
     } else {
-      console.log("Recipe not found for:", dishName); // Лог для отслеживания отсутствующих рецептов
+      console.log("No recipe linked to this dish.");
     }
   };
 
