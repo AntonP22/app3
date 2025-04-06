@@ -2,7 +2,6 @@
 // Stores Excel data in localStorage for persistence
 
 import React, { useState, useEffect } from 'react';
-import { Tabs, Tab } from './components/ui/tabs';
 import { Card, CardContent } from './components/ui/card';
 import * as XLSX from 'xlsx';
 
@@ -103,7 +102,7 @@ export default function NutritionApp() {
     reader.readAsArrayBuffer(file);
   };
 
- const openRecipeModal = (dishName) => {
+  const openRecipeModal = (dishName) => {
     console.log("Opening recipe modal for:", dishName);
     const normalized = dishName?.toLowerCase().trim();
     const linkedName = recipeMap[normalized];
@@ -117,9 +116,10 @@ export default function NutritionApp() {
       found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
     }
 
+    console.log("Found recipe:", found);
     setSelectedDish(dishName);
     setSelectedRecipe(found || null);
-    setIsModalOpen(true);  // Это нужно, чтобы окно открылось
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
