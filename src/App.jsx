@@ -104,23 +104,23 @@ export default function NutritionApp() {
   };
 
   const openRecipeModal = (dishName) => {
-    console.log("Opening recipe modal for:", dishName);
-    const normalized = dishName?.toLowerCase().trim();
-    const linkedName = recipeMap[normalized];
+  console.log("Opening recipe modal for:", dishName); // Логирование
+  const normalized = dishName?.toLowerCase().trim();
+  const linkedName = recipeMap[normalized];
 
-    let found = null;
-    if (linkedName) {
-      found = recipesData.find(r => r['Блюдо']?.toLowerCase().trim() === linkedName);
-    }
+  let found = null;
+  if (linkedName) {
+    found = recipesData.find(r => r['Блюдо']?.toLowerCase().trim() === linkedName);
+  }
 
-    if (!found) {
-      found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
-    }
+  if (!found) {
+    found = recipesData.find(r => r['Блюдо']?.toLowerCase().includes(normalized));
+  }
 
-    setSelectedDish(dishName);
-    setSelectedRecipe(found || null);
-    setIsModalOpen(true);  // Это должно быть
-  };
+  setSelectedDish(dishName);
+  setSelectedRecipe(found || null);
+  setIsModalOpen(true);  // Убедись, что состояние обновляется
+};
 
   const closeModal = () => {
     setIsModalOpen(false);
