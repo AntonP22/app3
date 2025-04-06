@@ -104,6 +104,7 @@ export default function NutritionApp() {
   };
 
   const openRecipeModal = (dishName) => {
+    console.log("Opening recipe modal for:", dishName);
     const normalized = dishName?.toLowerCase().trim();
     const linkedName = recipeMap[normalized];
 
@@ -118,7 +119,7 @@ export default function NutritionApp() {
 
     setSelectedDish(dishName);
     setSelectedRecipe(found || null);
-    setIsModalOpen(true);
+    setIsModalOpen(true);  // Это должно быть
   };
 
   const closeModal = () => {
